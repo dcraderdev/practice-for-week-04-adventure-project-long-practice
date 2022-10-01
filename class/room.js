@@ -1,3 +1,6 @@
+const { Item } = require("./item");
+const { Player } = require("./player");
+
 class Room {
 
     constructor(name, description) {
@@ -43,11 +46,16 @@ class Room {
         return this.exits[direction];
     }
 
-    getItemByName(name) {
-        // Retrieves an item from a room by item name
 
-        // Your code here
+// iterate over array and if array contains the first part of the name return 
+getItemByName(name){
+    for(let i = 0; i < this.items.length; i++){
+        let item = this.items[i]
+        if(item.name.startsWith(name)){
+         return this.items.splice(i,1)[0]
+        }
     }
+}
 
 }
 

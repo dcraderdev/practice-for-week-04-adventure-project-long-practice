@@ -1,4 +1,12 @@
 const { Food } = require('./food');
+const { Item } = require('./item');
+const { Room } = require('./room');
+
+
+
+
+
+
 
 class Player {
 
@@ -33,30 +41,54 @@ class Player {
         }
     }
 
-    takeItem(itemName) {
-        // Picks up an item from the current room into the player's inventory
 
+
+
+        // Picks up an item from the current room into the player's inventory
         // Your code here
-    }
+    takeItem(itemName) {
+            let item = this.currentRoom.getItemByName(itemName)
+            return  this.items.push(item)
+        }
+    
+
+
 
     dropItem(itemName) {
-        // Drops an item the player is holding into their current room
-
-        // Your code here
+        let item = this.getItemByName(itemName)
+        return  this.currentRoom.items.push(item)
     }
 
+    
     eatItem(itemName) {
         // Allow the player to eat food items, but not non-food items
-
         // Your code here
     }
 
-    getItemByName(name) {
-        // Retrieves an item from a player's inventory by item name
-
-        // Your code here
+    getItemByName(name){
+        for(let i = 0; i < this.items.length; i++){
+            let item = this.items[i]
+            if(item.name.startsWith(name)){
+             return this.items.splice(i,1)[0]
+            }
+        }
     }
 }
+
+
+
+
+let item = new Item("rock", "just a simple rock");
+let room = new Room("Test Room", "A test room");
+let player = new Player("player", room);
+
+
+
+
+console.log(room.items);
+
+
+
 
 module.exports = {
   Player,
