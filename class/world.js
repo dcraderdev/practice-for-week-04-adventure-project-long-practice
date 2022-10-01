@@ -2,6 +2,7 @@ const { Room } = require('./room');
 const { Item } = require('./item');
 const { Food } = require('./food');
 
+
 class World {
     constructor() {
         this.rooms = {};
@@ -35,13 +36,36 @@ class World {
                 this.rooms[roomID].connectRooms(direction, roomToConnect);
             }
 
+
+            // for(let i = 0; i < itemList.length; i++){
+            //     let itemData = itemList[i];
+
+            //     let newItem;
+            //     if(itemData.isFood) {
+            //         newItem = new Food(itemData.name, item.Data.description)
+            //     } else {
+            //         newItem = new Item(itemData.name, itemData.description)
+            //     }
+            //     let itemRoom = this.rooms[itemData.room]
+            //     itemRoom.items.push(newItem)
+            // }
+
+
+
+            for(let i = 0; i < itemList.length; i++){
+                let itemData = itemList[i];
+
+                let newItem;
+                if (itemData.isFood) {
+                    newItem = new Food(itemData.name, itemData.description)
+
+                } else {
+                    newItem = new Item(itemData.name, itemData.description)
+                }
+                let itemRoom = this.rooms[itemData.room]
+                itemRoom.items.push(newItem)
+            }
         }
-
-        // Instantiate items using data stored in the itemList variable
-            // A non-food item should be instantiated as an instance of the `Item` class
-            // A food item should be instantiated as an instance of the `Food` class
-
-        // Your code here
     }
 }
 
